@@ -5,14 +5,16 @@ def add_book(title: str, author: str, pages: int):
     title = title.lower()
     if title in library.keys():
         print(f"\nThe product '{title}' already exists and was not added.")
-        return
+
     library[title] = (author, pages)
     print(f"\nThe product '{title}' was added to the library.")
 
 def find_book(title:str):
     book:tuple = library.get(title)
     if book:
-        print(f"\nTitle: {title}, Author: {book[0]}, Pages: {book[1]}")
+        return f"Title: {title}, Author: {book[0]}, Pages: {book[1]}"
+    else:
+        return f"Book not found."
 
 def show_books():
     if library:
@@ -46,9 +48,12 @@ def add_grade(name:str, grade:int):
 
 def get_average(name:str):
     name = name.lower()
-    student = grades.get(name)
+    student = grades[name]
     if student:
-        print(f"Average :{sum(student) / len(student)}")
+        average: float = sum(student) / len(student)
+        return average
+    else:
+        return "Student not found."
 
 
 # 3. Restaurant Menu Editor
